@@ -38,6 +38,23 @@ public class MyTodoRepository implements TodoRepository {
     }
 
     @Override
+    public TodoItem updateStatus(int id) {
+        for (TodoItem todoItem: todoItems) {
+            if (todoItem.getId() == id) {
+                todoItem.setCompleted(!todoItem.getCompleted());
+                return todoItem;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<TodoItem> uploadTodoFile(List<TodoItem> list) {
+        this.todoItems = list;
+        return todoItems;
+    }
+
+    @Override
     public void deleteById(int id) {
         for (TodoItem todoItem: todoItems) {
             if (todoItem.getId() == id) {
@@ -45,5 +62,16 @@ public class MyTodoRepository implements TodoRepository {
                 return;
             }
         }
+    }
+
+    @Override
+    public List<TodoItem> searchByTitle(String title) {
+        List<TodoItem> result = new ArrayList<>();
+        for (TodoItem todoItem: todoItems) {
+            if (todoItem.getTitle().contains(title)) {
+                result.add(todoItem);
+            }
+        }
+        return result;
     }
 }

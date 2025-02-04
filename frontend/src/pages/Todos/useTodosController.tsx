@@ -80,7 +80,7 @@ const useTodosController = () => {
   };
 
   const handleUploadTodos = (todos: Todo[]) => {
-    httpClient.post<Todo[]>('/todos/', todos).then(() => {
+    httpClient.post<Todo[]>('/todos/upload', todos).then(() => {
       setTodos(todos);
     });
   };

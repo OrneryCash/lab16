@@ -32,8 +32,23 @@ public class TodoController {
         return todoRepository.add(createTodoItem.getTitle());
     }
 
+    @PostMapping("/upload")
+    public List<TodoItem> uploadTodoFile(@RequestBody List<TodoItem> list) {
+        return todoRepository.uploadTodoFile(list);
+    }
+
+    @PutMapping("/{id}")
+    public TodoItem updateStatus(@PathVariable(name="id") int id) {
+        return todoRepository.updateStatus(id);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteTodoItem(@PathVariable(name="id") int id) {
         todoRepository.deleteById(id);
+    }
+
+    @GetMapping("/search/")
+    public List<TodoItem> searchByTitle(@RequestParam(name = "title", required = true) String title) {
+        return todoRepository.searchByTitle(title);
     }
 }

@@ -7,5 +7,8 @@ public interface TodoRepository {
     List<TodoItem> findAll();
     List<TodoItem> findByCompleted(boolean completed);
     TodoItem add(String title);
+    TodoItem updateStatus(int id);
+    List<TodoItem> uploadTodoFile(List<TodoItem> todoItems);
     void deleteById(int id);
+    List<TodoItem> searchByTitle(String title);
 }
